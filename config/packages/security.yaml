@@ -14,7 +14,7 @@ security:
             stateless: true
             provider: app_user_provider
             json_login:
-                username_path: email
+                username_path: nom
                 password_path: password
                 check_path: /api/login_check
                 success_handler: lexik_jwt_authentication.handler.authentication_success
@@ -29,6 +29,7 @@ security:
             jwt: ~
 
     access_control:
-        # - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api/register,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api/user, roles: ROLE_USER }
+        - { path: ^/api/register, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
